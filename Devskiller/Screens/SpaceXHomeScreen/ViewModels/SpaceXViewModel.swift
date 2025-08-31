@@ -15,14 +15,18 @@ class SpaceXViewModel {
     private let service: SpaceXServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    // MARK: - Published Properties
     var company: Company?
     var launches: [Launch] = []
     var filteredLaunches: [Launch] = []
     var isLoading = false
+    var isLoadingMore = false
     var errorMessage: String?
     
-    // MARK: - Filter Properties
+    var currentPage = 1
+    var hasNextPage = false
+    var totalPages = 0
+    let pageSize = 10
+    
     var selectedYear: Int?
     var showSuccessfulOnly = false
     var sortOrder: SortOrder = .descending
@@ -31,7 +35,6 @@ class SpaceXViewModel {
         case ascending, descending
     }
     
-    // MARK: - Available Years
     var availableYears: [Int] {
         let years = Set(launches.compactMap { launch -> Int? in
             let formatter = DateFormatter()
@@ -46,13 +49,14 @@ class SpaceXViewModel {
         self.service = service
     }
     
-    // MARK: - Data Loading
     func loadData() {
         isLoading = true
         errorMessage = nil
+        currentPage = 1
+        launches = []
         
         let companyPublisher = service.fetchCompany()
-        let launchesPublisher = service.fetchLaunches()
+        let launchesPublisher = service.fetchLaunchesPaginated(page: currentPage, limit: pageSize, query: buildQuery())
         
         Publishers.Zip(companyPublisher, launchesPublisher)
             .receive(on: DispatchQueue.main)
@@ -61,15 +65,48 @@ class SpaceXViewModel {
                 if case .failure(let error) = completion {
                     self?.errorMessage = error.localizedDescription
                 }
-            } receiveValue: { [weak self] company, launches in
+            } receiveValue: { [weak self] company, response in
                 self?.company = company
-                self?.launches = launches
+                self?.launches = response.docs
+                self?.hasNextPage = response.hasNextPage
+                self?.totalPages = response.totalPages
                 self?.applyFilters()
             }
             .store(in: &cancellables)
     }
     
-    // MARK: - Filtering
+    func loadMoreData() {
+        guard !isLoadingMore && hasNextPage else { return }
+        
+        isLoadingMore = true
+        currentPage += 1
+        
+        service.fetchLaunchesPaginated(page: currentPage, limit: pageSize, query: buildQuery())
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                self?.isLoadingMore = false
+                if case .failure(let error) = completion {
+                    self?.errorMessage = error.localizedDescription
+                }
+            } receiveValue: { [weak self] response in
+                self?.launches.append(contentsOf: response.docs)
+                self?.hasNextPage = response.hasNextPage
+                self?.applyFilters()
+            }
+            .store(in: &cancellables)
+    }
+    
+    // MARK: - Build Query
+    private func buildQuery() -> [String: String] {
+        var query: [String: String] = [:]
+        
+        if showSuccessfulOnly {
+            query["success"] = "true"
+        }
+        
+        return query
+    }
+    
     func applyFilters() {
         var filtered = launches
         
@@ -114,7 +151,7 @@ class SpaceXViewModel {
         selectedYear = nil
         showSuccessfulOnly = false
         sortOrder = .descending
-        applyFilters()
+        loadData() // Reload with new filters
     }
     
     func toggleSortOrder() {

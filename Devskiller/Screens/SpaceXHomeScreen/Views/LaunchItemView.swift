@@ -15,7 +15,6 @@ struct LaunchItemView: View {
     var body: some View {
         Button(action: onTap) {
             HStack(spacing: 12) {
-                // Mission patch image
                 AsyncImageView(
                     url: launch.links?.patch?.small,
                     placeholder: "photo"
@@ -49,7 +48,6 @@ struct LaunchItemView: View {
                 
                 Spacer()
                 
-                // Success indicator
                 Image(systemName: launch.success == true ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .foregroundColor(launch.success == true ? .green : .red)
                     .font(.title2)

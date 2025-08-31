@@ -12,6 +12,7 @@ import Combine
 protocol SpaceXServiceProtocol {
     func fetchCompany() -> AnyPublisher<Company, Error>
     func fetchLaunches() -> AnyPublisher<[Launch], Error>
+    func fetchLaunchesPaginated(page: Int, limit: Int, query: [String: String]) -> AnyPublisher<LaunchQueryResponse, Error>
 }
 
 class SpaceXService: SpaceXServiceProtocol {
@@ -27,5 +28,14 @@ class SpaceXService: SpaceXServiceProtocol {
     func fetchLaunches() -> AnyPublisher<[Launch], Error> {
         print("🚀 Fetching launches data...")
         return NetworkingManager.fetch([Launch].self, from: Constants.launchesEndpoint)
+    }
+    
+    func fetchLaunchesPaginated(page: Int, limit: Int, query: [String: String] = [:]) -> AnyPublisher<LaunchQueryResponse, Error> {
+        print("🚀 Fetching launches data (page: \(page), limit: \(limit))...")
+        
+        let options = LaunchQueryOptions(limit: limit, page: page)
+        let queryBody = LaunchQuery(query: query, options: options)
+        
+        return NetworkingManager.post(LaunchQueryResponse.self, body: queryBody, to: Constants.launchesQueryEndpoint)
     }
 }

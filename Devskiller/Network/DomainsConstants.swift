@@ -12,4 +12,5 @@ enum Constants {
     static let baseURL = "https://api.spacexdata.com"
     static let companyEndpoint = "\(baseURL)/v4/company"
     static let launchesEndpoint = "\(baseURL)/v5/launches"
+    static let launchesQueryEndpoint = "\(baseURL)/v5/launches/query"
 }

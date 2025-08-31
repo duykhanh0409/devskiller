@@ -143,6 +143,22 @@ struct SpaceXHomeScreen: View {
                     selectedLaunch = launch
                 }
                 .padding(.horizontal, 20)
+                .onAppear {
+                    // Trigger infinite scrolling when approaching the end
+                    if launch.id == viewModel.filteredLaunches.last?.id {
+                        viewModel.loadMoreData()
+                    }
+                }
+            }
+            
+            // Loading indicator for infinite scrolling
+            if viewModel.isLoadingMore {
+                HStack {
+                    Spacer()
+                    ProgressView()
+                        .padding()
+                    Spacer()
+                }
             }
         }
     }
