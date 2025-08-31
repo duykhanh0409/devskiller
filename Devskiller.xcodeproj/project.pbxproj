@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48D69BC72514ECC700DD96AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BC62514ECC700DD96AA /* AppDelegate.swift */; };
+		48D69BC92514ECC700DD96AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BC82514ECC700DD96AA /* SceneDelegate.swift */; };
+		48D69BCB2514ECC700DD96AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BCA2514ECC700DD96AA /* ViewController.swift */; };
+		48D69BCE2514ECC700DD96AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D69BCC2514ECC700DD96AA /* Main.storyboard */; };
+		48D69BD12514ECC700DD96AA /* Devskiller.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BCF2514ECC700DD96AA /* Devskiller.xcdatamodeld */; };
+		48D69BD32514ECC800DD96AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D69BD22514ECC800DD96AA /* Assets.xcassets */; };
+		48D69BD62514ECC800DD96AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D69BD42514ECC800DD96AA /* LaunchScreen.storyboard */; };
+		48D69BE12514ECC800DD96AA /* DevskillerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BE02514ECC800DD96AA /* DevskillerTests.swift */; };
+		48D69BEC2514ECC800DD96AA /* DevskillerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BEB2514ECC800DD96AA /* DevskillerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		48D69BDD2514ECC800DD96AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48D69BBB2514ECC700DD96AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48D69BC22514ECC700DD96AA;
+			remoteInfo = Devskiller;
+		};
+		48D69BE82514ECC800DD96AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48D69BBB2514ECC700DD96AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 48D69BC22514ECC700DD96AA;
+			remoteInfo = Devskiller;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		48D69BC32514ECC700DD96AA /* Devskiller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Devskiller.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		48D69BC62514ECC700DD96AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		48D69BC82514ECC700DD96AA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		48D69BCA2514ECC700DD96AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		48D69BCD2514ECC700DD96AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		48D69BD02514ECC700DD96AA /* Devskiller.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Devskiller.xcdatamodel; sourceTree = "<group>"; };
+		48D69BD22514ECC800DD96AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		48D69BD52514ECC800DD96AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48D69BD72514ECC800DD96AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48D69BDC2514ECC800DD96AA /* DevskillerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DevskillerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		48D69BE02514ECC800DD96AA /* DevskillerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevskillerTests.swift; sourceTree = "<group>"; };
+		48D69BE22514ECC800DD96AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48D69BE72514ECC800DD96AA /* DevskillerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DevskillerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		48D69BEB2514ECC800DD96AA /* DevskillerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevskillerUITests.swift; sourceTree = "<group>"; };
+		48D69BED2514ECC800DD96AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		48D69BC02514ECC700DD96AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D69BD92514ECC800DD96AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D69BE42514ECC800DD96AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48D69BBA2514ECC700DD96AA = {
+			isa = PBXGroup;
+			children = (
+				48D69BC52514ECC700DD96AA /* Devskiller */,
+				48D69BDF2514ECC800DD96AA /* DevskillerTests */,
+				48D69BEA2514ECC800DD96AA /* DevskillerUITests */,
+				48D69BC42514ECC700DD96AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		48D69BC42514ECC700DD96AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				48D69BC32514ECC700DD96AA /* Devskiller.app */,
+				48D69BDC2514ECC800DD96AA /* DevskillerTests.xctest */,
+				48D69BE72514ECC800DD96AA /* DevskillerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		48D69BC52514ECC700DD96AA /* Devskiller */ = {
+			isa = PBXGroup;
+			children = (
+				48D69BC62514ECC700DD96AA /* AppDelegate.swift */,
+				48D69BC82514ECC700DD96AA /* SceneDelegate.swift */,
+				48D69BCA2514ECC700DD96AA /* ViewController.swift */,
+				48D69BCC2514ECC700DD96AA /* Main.storyboard */,
+				48D69BD22514ECC800DD96AA /* Assets.xcassets */,
+				48D69BD42514ECC800DD96AA /* LaunchScreen.storyboard */,
+				48D69BD72514ECC800DD96AA /* Info.plist */,
+				48D69BCF2514ECC700DD96AA /* Devskiller.xcdatamodeld */,
+			);
+			path = Devskiller;
+			sourceTree = "<group>";
+		};
+		48D69BDF2514ECC800DD96AA /* DevskillerTests */ = {
+			isa = PBXGroup;
+			children = (
+				48D69BE02514ECC800DD96AA /* DevskillerTests.swift */,
+				48D69BE22514ECC800DD96AA /* Info.plist */,
+			);
+			path = DevskillerTests;
+			sourceTree = "<group>";
+		};
+		48D69BEA2514ECC800DD96AA /* DevskillerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				48D69BEB2514ECC800DD96AA /* DevskillerUITests.swift */,
+				48D69BED2514ECC800DD96AA /* Info.plist */,
+			);
+			path = DevskillerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48D69BC22514ECC700DD96AA /* Devskiller */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48D69BF02514ECC800DD96AA /* Build configuration list for PBXNativeTarget "Devskiller" */;
+			buildPhases = (
+				48D69BBF2514ECC700DD96AA /* Sources */,
+				48D69BC02514ECC700DD96AA /* Frameworks */,
+				48D69BC12514ECC700DD96AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Devskiller;
+			productName = Devskiller;
+			productReference = 48D69BC32514ECC700DD96AA /* Devskiller.app */;
+			productType = "com.apple.product-type.application";
+		};
+		48D69BDB2514ECC800DD96AA /* DevskillerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48D69BF32514ECC800DD96AA /* Build configuration list for PBXNativeTarget "DevskillerTests" */;
+			buildPhases = (
+				48D69BD82514ECC800DD96AA /* Sources */,
+				48D69BD92514ECC800DD96AA /* Frameworks */,
+				48D69BDA2514ECC800DD96AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48D69BDE2514ECC800DD96AA /* PBXTargetDependency */,
+			);
+			name = DevskillerTests;
+			productName = DevskillerTests;
+			productReference = 48D69BDC2514ECC800DD96AA /* DevskillerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		48D69BE62514ECC800DD96AA /* DevskillerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48D69BF62514ECC800DD96AA /* Build configuration list for PBXNativeTarget "DevskillerUITests" */;
+			buildPhases = (
+				48D69BE32514ECC800DD96AA /* Sources */,
+				48D69BE42514ECC800DD96AA /* Frameworks */,
+				48D69BE52514ECC800DD96AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				48D69BE92514ECC800DD96AA /* PBXTargetDependency */,
+			);
+			name = DevskillerUITests;
+			productName = DevskillerUITests;
+			productReference = 48D69BE72514ECC800DD96AA /* DevskillerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48D69BBB2514ECC700DD96AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = Mindera;
+				TargetAttributes = {
+					48D69BC22514ECC700DD96AA = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					48D69BDB2514ECC800DD96AA = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 48D69BC22514ECC700DD96AA;
+					};
+					48D69BE62514ECC800DD96AA = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 48D69BC22514ECC700DD96AA;
+					};
+				};
+			};
+			buildConfigurationList = 48D69BBE2514ECC700DD96AA /* Build configuration list for PBXProject "Devskiller" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 48D69BBA2514ECC700DD96AA;
+			productRefGroup = 48D69BC42514ECC700DD96AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48D69BC22514ECC700DD96AA /* Devskiller */,
+				48D69BDB2514ECC800DD96AA /* DevskillerTests */,
+				48D69BE62514ECC800DD96AA /* DevskillerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		48D69BC12514ECC700DD96AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48D69BD62514ECC800DD96AA /* LaunchScreen.storyboard in Resources */,
+				48D69BD32514ECC800DD96AA /* Assets.xcassets in Resources */,
+				48D69BCE2514ECC700DD96AA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D69BDA2514ECC800DD96AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D69BE52514ECC800DD96AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		48D69BBF2514ECC700DD96AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48D69BD12514ECC700DD96AA /* Devskiller.xcdatamodeld in Sources */,
+				48D69BCB2514ECC700DD96AA /* ViewController.swift in Sources */,
+				48D69BC72514ECC700DD96AA /* AppDelegate.swift in Sources */,
+				48D69BC92514ECC700DD96AA /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D69BD82514ECC800DD96AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48D69BE12514ECC800DD96AA /* DevskillerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48D69BE32514ECC800DD96AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48D69BEC2514ECC800DD96AA /* DevskillerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		48D69BDE2514ECC800DD96AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48D69BC22514ECC700DD96AA /* Devskiller */;
+			targetProxy = 48D69BDD2514ECC800DD96AA /* PBXContainerItemProxy */;
+		};
+		48D69BE92514ECC800DD96AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 48D69BC22514ECC700DD96AA /* Devskiller */;
+			targetProxy = 48D69BE82514ECC800DD96AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		48D69BCC2514ECC700DD96AA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48D69BCD2514ECC700DD96AA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		48D69BD42514ECC800DD96AA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				48D69BD52514ECC800DD96AA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		48D69BEE2514ECC800DD96AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		48D69BEF2514ECC800DD96AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		48D69BF12514ECC800DD96AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74L475LDQT;
+				INFOPLIST_FILE = Devskiller/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mindera.Devskiller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		48D69BF22514ECC800DD96AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74L475LDQT;
+				INFOPLIST_FILE = Devskiller/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mindera.Devskiller;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		48D69BF42514ECC800DD96AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74L475LDQT;
+				INFOPLIST_FILE = DevskillerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mindera.DevskillerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Devskiller.app/Devskiller";
+			};
+			name = Debug;
+		};
+		48D69BF52514ECC800DD96AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74L475LDQT;
+				INFOPLIST_FILE = DevskillerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mindera.DevskillerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Devskiller.app/Devskiller";
+			};
+			name = Release;
+		};
+		48D69BF72514ECC800DD96AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74L475LDQT;
+				INFOPLIST_FILE = DevskillerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mindera.DevskillerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Devskiller;
+			};
+			name = Debug;
+		};
+		48D69BF82514ECC800DD96AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 74L475LDQT;
+				INFOPLIST_FILE = DevskillerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mindera.DevskillerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Devskiller;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		48D69BBE2514ECC700DD96AA /* Build configuration list for PBXProject "Devskiller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48D69BEE2514ECC800DD96AA /* Debug */,
+				48D69BEF2514ECC800DD96AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48D69BF02514ECC800DD96AA /* Build configuration list for PBXNativeTarget "Devskiller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48D69BF12514ECC800DD96AA /* Debug */,
+				48D69BF22514ECC800DD96AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48D69BF32514ECC800DD96AA /* Build configuration list for PBXNativeTarget "DevskillerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48D69BF42514ECC800DD96AA /* Debug */,
+				48D69BF52514ECC800DD96AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48D69BF62514ECC800DD96AA /* Build configuration list for PBXNativeTarget "DevskillerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48D69BF72514ECC800DD96AA /* Debug */,
+				48D69BF82514ECC800DD96AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		48D69BCF2514ECC700DD96AA /* Devskiller.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				48D69BD02514ECC700DD96AA /* Devskiller.xcdatamodel */,
+			);
+			currentVersion = 48D69BD02514ECC700DD96AA /* Devskiller.xcdatamodel */;
+			path = Devskiller.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 48D69BBB2514ECC700DD96AA /* Project object */;
+}
