@@ -60,6 +60,7 @@
 		8BF4648E2E640E4F00FC504D /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		8BF4648F2E640E5700FC504D /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
 		8BF464902E640ECE00FC504D /* Network */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Network; sourceTree = "<group>"; };
+		8BF465732E641A1500FC504D /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +111,7 @@
 		48D69BC52514ECC700DD96AA /* Devskiller */ = {
 			isa = PBXGroup;
 			children = (
+				8BF465732E641A1500FC504D /* Components */,
 				8BF464902E640ECE00FC504D /* Network */,
 				8BF4648F2E640E5700FC504D /* Utils */,
 				8BF4648E2E640E4F00FC504D /* Services */,
@@ -165,6 +167,7 @@
 				8BF4648E2E640E4F00FC504D /* Services */,
 				8BF4648F2E640E5700FC504D /* Utils */,
 				8BF464902E640ECE00FC504D /* Network */,
+				8BF465732E641A1500FC504D /* Components */,
 			);
 			name = Devskiller;
 			productName = Devskiller;
@@ -462,6 +465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74L475LDQT;
 				INFOPLIST_FILE = Devskiller/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,6 +484,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74L475LDQT;
 				INFOPLIST_FILE = Devskiller/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

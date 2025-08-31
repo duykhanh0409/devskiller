@@ -9,5 +9,7 @@
 import Foundation
 
 enum Constants {
-    static let photosURLString = "https://api.spacexdata.com"
+    static let baseURL = "https://api.spacexdata.com"
+    static let companyEndpoint = "\(baseURL)/v4/company"
+    static let launchesEndpoint = "\(baseURL)/v5/launches"
 }

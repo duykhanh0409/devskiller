@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  NetworkManager.swift
 //  Devskiller
 //
 //  Created by Khanh Nguyen on 31/8/25.
@@ -14,6 +14,7 @@ class NetworkingManager {
     enum NetworkingError: Equatable, LocalizedError {
         case invalidURL
         case badResponse(statusCode: Int)
+        case decodingError(String)
         case unknown
         
         var errorDescription: String? {
@@ -22,76 +23,67 @@ class NetworkingManager {
                 return "The provided URL is invalid."
             case .badResponse(let code):
                 return "Bad response from server. Status code: \(code)"
+            case .decodingError(let message):
+                return "Failed to decode response: \(message)"
             case .unknown:
                 return "An unknown error occurred."
             }
         }
     }
     
-    // MARK: - New method: fetch with cache + live data
-    static func fetchWithCache(from urlString: String, method: String = "GET") -> AnyPublisher<Data, Error> {
+    // MARK: - Simple fetch method
+    static func fetchData(from urlString: String) -> AnyPublisher<Data, Error> {
         guard let url = URL(string: urlString) else {
             return Fail(error: NetworkingError.invalidURL).eraseToAnyPublisher()
         }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        request.cachePolicy = .returnCacheDataDontLoad
+        print("🌐 Fetching data from: \(urlString)")
         
-        let cachedPublisher: AnyPublisher<Data, Error> = URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap(\.data)
-            .catch { _ in Empty() }
-            .eraseToAnyPublisher()
-        
-
-        var liveRequest = URLRequest(url: url)
-        liveRequest.httpMethod = method
-        liveRequest.cachePolicy = .reloadIgnoringLocalCacheData
-        
-        let freshPublisher: AnyPublisher<Data, Error> = URLSession.shared.dataTaskPublisher(for: liveRequest)
+        return URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { element -> Data in
-                guard let response = element.response as? HTTPURLResponse,
-                      200..<300 ~= response.statusCode else {
-                    throw NetworkingError.badResponse(statusCode: (element.response as? HTTPURLResponse)?.statusCode ?? -1)
+                guard let response = element.response as? HTTPURLResponse else {
+                    throw NetworkingError.badResponse(statusCode: -1)
                 }
-                return element.data
-            }
-            .eraseToAnyPublisher()
-        
-        return cachedPublisher
-            .append(freshPublisher)
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-    
-    static func fetchData(from urlString: String, method: String = "GET") -> AnyPublisher<Data, Error> {
-        
-        guard let url = URL(string: urlString) else {
-            return Fail(error: NetworkingError.invalidURL).eraseToAnyPublisher()
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap { element -> Data in
-                guard let response = element.response as? HTTPURLResponse,
-                      200..<300 ~= response.statusCode else {
-                    let code = (element.response as? HTTPURLResponse)?.statusCode ?? -1
-                    throw NetworkingError.badResponse(statusCode: code)
+                
+                print("📡 Response status code: \(response.statusCode)")
+                
+                guard 200..<300 ~= response.statusCode else {
+                    throw NetworkingError.badResponse(statusCode: response.statusCode)
                 }
+                
+                print("✅ Data received: \(element.data.count) bytes")
                 return element.data
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
     
+    // MARK: - Generic fetch method for decoding
+    static func fetch<T: Codable>(_ type: T.Type, from urlString: String) -> AnyPublisher<T, Error> {
+        return fetchData(from: urlString)
+            .tryMap { data -> T in
+                do {
+                    let decoder = JSONDecoder()
+                    let result = try decoder.decode(T.self, from: data)
+                    print("✅ Successfully decoded \(T.self)")
+                    return result
+                } catch {
+                    print("❌ Decoding error: \(error)")
+                    print("📄 Raw data: \(String(data: data, encoding: .utf8) ?? "Unable to convert to string")")
+                    throw NetworkingError.decodingError(error.localizedDescription)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    // MARK: - Handle completion
     static func handleCompletion(_ completion: Subscribers.Completion<Error>) -> String? {
         switch completion {
         case .finished:
             return nil
         case .failure(let error):
-            return (error as? NetworkingError)?.localizedDescription ?? "An unknown error occurred."
+            print("❌ Network error: \(error)")
+            return (error as? NetworkingError)?.localizedDescription ?? error.localizedDescription
         }
     }
 }
