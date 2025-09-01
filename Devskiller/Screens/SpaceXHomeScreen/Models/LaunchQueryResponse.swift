@@ -22,12 +22,37 @@ struct LaunchQueryResponse: Codable {
 }
 
 struct LaunchQuery: Codable {
-    let query: [String: String]
+    let query: LaunchQueryFilter
     let options: LaunchQueryOptions
     
-    init(query: [String: String] = [:], options: LaunchQueryOptions = LaunchQueryOptions()) {
+    init(query: LaunchQueryFilter = LaunchQueryFilter(), options: LaunchQueryOptions = LaunchQueryOptions()) {
         self.query = query
         self.options = options
+    }
+}
+
+struct LaunchQueryFilter: Codable {
+    let dateUtc: DateRangeFilter?
+    let success: Bool?
+    
+    enum CodingKeys: String, CodingKey {
+        case dateUtc = "date_utc"
+        case success
+    }
+    
+    init(dateUtc: DateRangeFilter? = nil, success: Bool? = nil) {
+        self.dateUtc = dateUtc
+        self.success = success
+    }
+}
+
+struct DateRangeFilter: Codable {
+    let gte: String
+    let lte: String
+    
+    enum CodingKeys: String, CodingKey {
+        case gte = "$gte"
+        case lte = "$lte"
     }
 }
 

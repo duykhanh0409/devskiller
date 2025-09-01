@@ -12,6 +12,13 @@ struct FilterView: View {
     @Bindable var viewModel: SpaceXViewModel
     @Environment(\.dismiss) private var dismiss
     
+    private let yearFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = false
+        return formatter
+    }()
+    
     var body: some View {
         NavigationView {
             Form {
@@ -19,7 +26,7 @@ struct FilterView: View {
                     Picker("Select Year", selection: $viewModel.selectedYear) {
                         Text("All Years").tag(nil as Int?)
                         ForEach(viewModel.availableYears, id: \.self) { year in
-                            Text("\(year)").tag(year as Int?)
+                            Text(yearFormatter.string(from: NSNumber(value: year)) ?? "\(year)").tag(year as Int?)
                         }
                     }
                     .pickerStyle(.menu)

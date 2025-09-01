@@ -36,13 +36,9 @@ class SpaceXViewModel {
     }
     
     var availableYears: [Int] {
-        let years = Set(launches.compactMap { launch -> Int? in
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            guard let date = formatter.date(from: launch.dateUtc) else { return nil }
-            return Calendar.current.component(.year, from: date)
-        })
-        return Array(years).sorted(by: >)
+        // SpaceX launches from 2006 to 2025
+        print("khanh Array(2006...2025).sorted(by: >)\(Array(2006...2025).sorted(by: >))")
+        return Array(2006...2025).sorted(by: >)
     }
     
     init(service: SpaceXServiceProtocol = SpaceXService.shared) {
@@ -55,6 +51,7 @@ class SpaceXViewModel {
         currentPage = 1
         launches = []
         
+        // Load company data and initial launches
         let companyPublisher = service.fetchCompany()
         let launchesPublisher = service.fetchLaunchesPaginated(page: currentPage, limit: pageSize, query: buildQuery())
         
@@ -68,9 +65,9 @@ class SpaceXViewModel {
             } receiveValue: { [weak self] company, response in
                 self?.company = company
                 self?.launches = response.docs
+                self?.filteredLaunches = response.docs
                 self?.hasNextPage = response.hasNextPage
                 self?.totalPages = response.totalPages
-                self?.applyFilters()
             }
             .store(in: &cancellables)
     }
@@ -90,61 +87,36 @@ class SpaceXViewModel {
                 }
             } receiveValue: { [weak self] response in
                 self?.launches.append(contentsOf: response.docs)
+                self?.filteredLaunches.append(contentsOf: response.docs)
                 self?.hasNextPage = response.hasNextPage
-                self?.applyFilters()
             }
             .store(in: &cancellables)
     }
     
     // MARK: - Build Query
-    private func buildQuery() -> [String: String] {
-        var query: [String: String] = [:]
-        
-        if showSuccessfulOnly {
-            query["success"] = "true"
-        }
-        
-        return query
-    }
-    
-    func applyFilters() {
-        var filtered = launches
+    private func buildQuery() -> LaunchQueryFilter {
+        var dateUtc: DateRangeFilter?
+        var success: Bool?
         
         // Filter by year
         if let selectedYear = selectedYear {
-            filtered = filtered.filter { launch in
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-                guard let date = formatter.date(from: launch.dateUtc) else { return false }
-                let year = Calendar.current.component(.year, from: date)
-                return year == selectedYear
-            }
+            let startOfYear = "\(selectedYear)-01-01T00:00:00.000Z"
+            let endOfYear = "\(selectedYear)-12-31T23:59:59.999Z"
+            dateUtc = DateRangeFilter(gte: startOfYear, lte: endOfYear)
         }
         
         // Filter by success
         if showSuccessfulOnly {
-            filtered = filtered.filter { $0.success == true }
+            success = true
         }
         
-        // Sort by date
-        filtered.sort { launch1, launch2 in
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-            
-            guard let date1 = formatter.date(from: launch1.dateUtc),
-                  let date2 = formatter.date(from: launch2.dateUtc) else {
-                return false
-            }
-            
-            switch sortOrder {
-            case .ascending:
-                return date1 < date2
-            case .descending:
-                return date1 > date2
-            }
-        }
-        
-        filteredLaunches = filtered
+        return LaunchQueryFilter(dateUtc: dateUtc, success: success)
+    }
+    
+    func applyFilters() {
+        // With server-side filtering, we don't need local filtering
+        // Just reload data with the new query
+        loadData()
     }
     
     func clearFilters() {
