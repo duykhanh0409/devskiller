@@ -38,7 +38,8 @@ class NetworkingManager {
         
         print("🌐 Fetching data from: \(urlString)")
         
-        return URLSession.shared.dataTaskPublisher(for: url)
+        let session = CertificatePinningManager.createURLSession()
+        return session.dataTaskPublisher(for: url)
             .tryMap { element -> Data in
                 guard let response = element.response as? HTTPURLResponse else {
                     throw NetworkingError.badResponse(statusCode: -1)
@@ -76,7 +77,8 @@ class NetworkingManager {
             return Fail(error: NetworkingError.unknown).eraseToAnyPublisher()
         }
         
-        return URLSession.shared.dataTaskPublisher(for: request)
+        let session = CertificatePinningManager.createURLSession()
+        return session.dataTaskPublisher(for: request)
             .tryMap { element -> Data in
                 guard let response = element.response as? HTTPURLResponse else {
                     throw NetworkingError.badResponse(statusCode: -1)
@@ -104,8 +106,6 @@ class NetworkingManager {
                     print("✅ Successfully decoded \(T.self)")
                     return result
                 } catch {
-                    print("❌ Decoding error: \(error)")
-                    print("📄 Raw data: \(String(data: data, encoding: .utf8) ?? "Unable to convert to string")")
                     throw NetworkingError.decodingError(error.localizedDescription)
                 }
             }
@@ -121,8 +121,6 @@ class NetworkingManager {
                     print("✅ Successfully decoded \(T.self)")
                     return result
                 } catch {
-                    print("❌ Decoding error: \(error)")
-                    print("📄 Raw data: \(String(data: data, encoding: .utf8) ?? "Unable to convert to string")")
                     throw NetworkingError.decodingError(error.localizedDescription)
                 }
             }
