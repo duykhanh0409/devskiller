@@ -10,10 +10,8 @@ import SwiftUI
 
 struct LaunchItemView: View {
     let launch: Launch
-    let onTap: () -> Void
     
     var body: some View {
-        Button(action: onTap) {
             HStack(spacing: 12) {
                 AsyncImageView(
                     url: launch.links?.patch?.small,
@@ -28,7 +26,7 @@ struct LaunchItemView: View {
                     Text("Mission: \(launch.name)")
                         .font(.headline)
                         .foregroundColor(.primary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                     
                     Text("Date/time: \(launch.formattedDate)")
                         .font(.subheadline)
@@ -38,7 +36,7 @@ struct LaunchItemView: View {
                     Text("Rocket: \(launch.rocket ?? "Unknown")")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                     
                     Text("Days \(launch.daysFromNow > 0 ? "from" : "since") now: \(launch.daysText)")
                         .font(.subheadline)
@@ -54,9 +52,6 @@ struct LaunchItemView: View {
             }
             .padding(16)
             .background(Color(.systemBackground))
-            .cornerRadius(12)
-            .shadow(radius: 1)
-        }
-        .buttonStyle(PlainButtonStyle())
+            .shadow(radius: 2, x: 0, y: 1)
     }
 }

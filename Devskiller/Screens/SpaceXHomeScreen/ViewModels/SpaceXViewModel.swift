@@ -36,7 +36,6 @@ class SpaceXViewModel {
     }
     
     var availableYears: [Int] {
-        // SpaceX launches from 2006 to 2025
         print("khanh Array(2006...2025).sorted(by: >)\(Array(2006...2025).sorted(by: >))")
         return Array(2006...2025).sorted(by: >)
     }
@@ -51,7 +50,6 @@ class SpaceXViewModel {
         currentPage = 1
         launches = []
         
-        // Load company data and initial launches
         let companyPublisher = service.fetchCompany()
         let launchesPublisher = service.fetchLaunchesPaginated(page: currentPage, limit: pageSize, query: buildQuery())
         
@@ -93,12 +91,10 @@ class SpaceXViewModel {
             .store(in: &cancellables)
     }
     
-    // MARK: - Build Query
     private func buildQuery() -> LaunchQueryFilter {
         var dateUtc: DateRangeFilter?
         var success: Bool?
         
-        // Filter by year
         if let selectedYear = selectedYear {
             let startOfYear = "\(selectedYear)-01-01T00:00:00.000Z"
             let endOfYear = "\(selectedYear)-12-31T23:59:59.999Z"
@@ -114,8 +110,6 @@ class SpaceXViewModel {
     }
     
     func applyFilters() {
-        // With server-side filtering, we don't need local filtering
-        // Just reload data with the new query
         loadData()
     }
     
@@ -123,7 +117,7 @@ class SpaceXViewModel {
         selectedYear = nil
         showSuccessfulOnly = false
         sortOrder = .descending
-        loadData() // Reload with new filters
+        loadData()
     }
     
     func toggleSortOrder() {

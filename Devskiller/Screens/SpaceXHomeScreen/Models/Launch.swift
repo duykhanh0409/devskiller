@@ -19,7 +19,7 @@ struct Launch: Codable, Identifiable {
     let staticFireDateUtc: String?
     let staticFireDateUnix: Int?
 //    let tdb: Bool
-    let net: Bool
+    let net: Bool?
     let window: Int?
     let rocket: String?
     let success: Bool?

@@ -16,10 +16,8 @@ struct SpaceXHomeScreen: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                // Header
                 headerView
                 
-                // Content
                 if viewModel.isLoading {
                     loadingView
                 } else if let errorMessage = viewModel.errorMessage {
@@ -102,21 +100,20 @@ struct SpaceXHomeScreen: View {
     }
     
     private var contentView: some View {
-        ScrollView {
-            LazyVStack(spacing: 16) {
-                // Company Info Section
-                if let company = viewModel.company {
-                    CompanyInfoView(company: company)
-                        .padding(.horizontal, 20)
-                }
-                
-                // Launches Section Header
-                launchesHeader
-                
-                // Launches List
-                launchesList
+        VStack(spacing: 0) {
+            // Company Info Section
+            if let company = viewModel.company {
+                CompanyInfoView(company: company)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 16)
             }
-            .padding(.bottom, 20)
+            
+            // Launches Section Header
+            launchesHeader
+                .padding(.bottom, 8)
+            
+            // Launches List with UITableView
+            launchesTableView
         }
     }
     
@@ -136,42 +133,19 @@ struct SpaceXHomeScreen: View {
         .padding(.horizontal, 20)
     }
     
-    private var launchesList: some View {
-        LazyVStack(spacing: 12) {
-            ForEach(viewModel.filteredLaunches) { launch in
-                LaunchItemView(launch: launch) {
-                    selectedLaunch = launch
-                }
-                .padding(.horizontal, 20)
-                .onAppear {
-                    // Trigger infinite scrolling when approaching the end
-                    if launch.id == viewModel.filteredLaunches.last?.id {
-                        viewModel.loadMoreData()
-                    }
-                }
-            }
-            
-            // Loading indicator for infinite scrolling
-            if viewModel.isLoadingMore {
-                HStack {
-                    Spacer()
-                    ProgressView()
-                        .padding()
-                    Spacer()
-                }
-            }
-        }
+    private var launchesTableView: some View {
+        LaunchesTableView(
+            launches: viewModel.filteredLaunches,
+            onLaunchSelected: { launch in
+                selectedLaunch = launch
+            },
+            onLoadMore: {
+                viewModel.loadMoreData()
+            },
+            isLoadingMore: viewModel.isLoadingMore
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-struct LaunchDetailView: UIViewControllerRepresentable {
-    let launch: Launch
-    
-    func makeUIViewController(context: Context) -> LaunchDetailViewController {
-        return LaunchDetailViewController(launch: launch)
-    }
-    
-    func updateUIViewController(_ uiViewController: LaunchDetailViewController, context: Context) {
-        // No updates needed
-    }
-}
+
