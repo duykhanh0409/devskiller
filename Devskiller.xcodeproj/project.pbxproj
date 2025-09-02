@@ -17,6 +17,7 @@
 		48D69BE12514ECC800DD96AA /* DevskillerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BE02514ECC800DD96AA /* DevskillerTests.swift */; };
 		48D69BEC2514ECC800DD96AA /* DevskillerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D69BEB2514ECC800DD96AA /* DevskillerUITests.swift */; };
 		8BF464432E640B3300FC504D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF464422E640B3300FC504D /* ContentView.swift */; };
+		8BF63FA02E65F03600F79107 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8BF63F9F2E65F03600F79107 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF63FA02E65F03600F79107 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +244,9 @@
 				Base,
 			);
 			mainGroup = 48D69BBA2514ECC700DD96AA;
+			packageReferences = (
+				8BF63F9E2E65F03600F79107 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 48D69BC42514ECC700DD96AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -620,6 +625,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8BF63F9E2E65F03600F79107 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8BF63F9F2E65F03600F79107 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8BF63F9E2E65F03600F79107 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		48D69BCF2514ECC700DD96AA /* Devskiller.xcdatamodeld */ = {

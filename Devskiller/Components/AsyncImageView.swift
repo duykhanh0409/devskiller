@@ -7,23 +7,28 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AsyncImageView: View {
     let url: String?
     let placeholder: String
     
-    @State private var image: UIImage?
-    @State private var isLoading = false
-    
     var body: some View {
         Group {
-            if let image = image {
-                Image(uiImage: image)
+            if let url = url {
+                KFImage(URL(string: url))
+                    .placeholder {
+                        VStack {
+                            ProgressView()
+                                .scaleEffect(0.8)
+                            Text("Loading...")
+                                .font(.caption2)
+                                .foregroundColor(.secondary)
+                        }
+                        .frame(width: 40, height: 40)
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-            } else if isLoading {
-                ProgressView()
-                    .frame(width: 40, height: 40)
             } else {
                 Image(systemName: placeholder)
                     .resizable()
@@ -31,23 +36,6 @@ struct AsyncImageView: View {
                     .foregroundColor(.gray)
             }
         }
-        .onAppear {
-            loadImage()
-        }
-    }
-    
-    private func loadImage() {
-        guard let urlString = url, let url = URL(string: urlString) else { return }
-        
-        isLoading = true
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            DispatchQueue.main.async {
-                isLoading = false
-                if let data = data, let loadedImage = UIImage(data: data) {
-                    self.image = loadedImage
-                }
-            }
-        }.resume()
     }
 }
+
