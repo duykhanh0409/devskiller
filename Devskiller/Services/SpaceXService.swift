@@ -17,21 +17,28 @@ protocol SpaceXServiceProtocol {
 class SpaceXService: SpaceXServiceProtocol {
     static let shared = SpaceXService()
     
-    private init() {}
+    private let fetchCompanyPublisher: () -> AnyPublisher<Company, Error>
+    private let fetchLaunchesPublisher: (Int, Int, LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error>
+    
+    init(
+        fetchCompanyPublisher: @escaping () -> AnyPublisher<Company, Error> = { NetworkingManager.fetch(Company.self, from: Constants.companyEndpoint) },
+        fetchLaunchesPublisher: @escaping (Int, Int, LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error> = { page, limit, query in
+            let options = LaunchQueryOptions(limit: limit, page: page)
+            let queryBody = LaunchQuery(query: query, options: options)
+            return NetworkingManager.post(LaunchQueryResponse.self, body: queryBody, to: Constants.launchesQueryEndpoint)
+        }
+    ) {
+        self.fetchCompanyPublisher = fetchCompanyPublisher
+        self.fetchLaunchesPublisher = fetchLaunchesPublisher
+    }
     
     func fetchCompany() -> AnyPublisher<Company, Error> {
         print("🚀 Fetching company data...")
-        return NetworkingManager.fetch(Company.self, from: Constants.companyEndpoint)
+        return fetchCompanyPublisher()
     }
-    
-
     
     func fetchLaunchesPaginated(page: Int, limit: Int, query: LaunchQueryFilter = LaunchQueryFilter()) -> AnyPublisher<LaunchQueryResponse, Error> {
         print("🚀 Fetching launches data (page: \(page), limit: \(limit))...")
-        
-        let options = LaunchQueryOptions(limit: limit, page: page)
-        let queryBody = LaunchQuery(query: query, options: options)
-        
-        return NetworkingManager.post(LaunchQueryResponse.self, body: queryBody, to: Constants.launchesQueryEndpoint)
+        return fetchLaunchesPublisher(page, limit, query)
     }
 }

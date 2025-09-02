@@ -62,6 +62,8 @@
 		8BF4648F2E640E5700FC504D /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
 		8BF464902E640ECE00FC504D /* Network */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Network; sourceTree = "<group>"; };
 		8BF465732E641A1500FC504D /* Components */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Components; sourceTree = "<group>"; };
+		8BF640132E667D7800F79107 /* SpaceXHomeScreen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpaceXHomeScreen; sourceTree = "<group>"; };
+		8BF640182E6681F500F79107 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,8 @@
 		48D69BDF2514ECC800DD96AA /* DevskillerTests */ = {
 			isa = PBXGroup;
 			children = (
+				8BF640182E6681F500F79107 /* Services */,
+				8BF640132E667D7800F79107 /* SpaceXHomeScreen */,
 				48D69BE02514ECC800DD96AA /* DevskillerTests.swift */,
 				48D69BE22514ECC800DD96AA /* Info.plist */,
 			);
@@ -188,6 +192,10 @@
 			);
 			dependencies = (
 				48D69BDE2514ECC800DD96AA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8BF640132E667D7800F79107 /* SpaceXHomeScreen */,
+				8BF640182E6681F500F79107 /* Services */,
 			);
 			name = DevskillerTests;
 			productName = DevskillerTests;
@@ -509,7 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74L475LDQT;
 				INFOPLIST_FILE = DevskillerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -531,7 +539,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 74L475LDQT;
 				INFOPLIST_FILE = DevskillerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
