@@ -33,12 +33,10 @@ class SpaceXService: SpaceXServiceProtocol {
     }
     
     func fetchCompany() -> AnyPublisher<Company, Error> {
-        print("🚀 Fetching company data...")
         return fetchCompanyPublisher()
     }
     
     func fetchLaunchesPaginated(page: Int, limit: Int, query: LaunchQueryFilter = LaunchQueryFilter()) -> AnyPublisher<LaunchQueryResponse, Error> {
-        print("🚀 Fetching launches data (page: \(page), limit: \(limit))...")
         return fetchLaunchesPublisher(page, limit, query)
     }
 }

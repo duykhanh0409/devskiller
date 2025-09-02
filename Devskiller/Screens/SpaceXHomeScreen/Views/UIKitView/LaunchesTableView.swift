@@ -55,7 +55,6 @@ struct LaunchesTableView: UIViewRepresentable {
             self.isLoadingMore = parent.isLoadingMore
         }
         
-        // MARK: - UITableViewDataSource
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return launches.count + (isLoadingMore ? 1 : 0)
         }
@@ -117,7 +116,6 @@ struct LaunchesTableView: UIViewRepresentable {
     }
 }
 
-// MARK: - Custom UITableViewCell with SwiftUI Content
 class LaunchTableViewCell: UITableViewCell {
     private var hostingController: UIHostingController<LaunchItemView>?
     
@@ -135,14 +133,12 @@ class LaunchTableViewCell: UITableViewCell {
         contentView.backgroundColor = .clear
         selectionStyle = .none
         
-        // Add spacing between cells
         let backgroundView = UIView()
         backgroundView.backgroundColor = .clear
         selectedBackgroundView = backgroundView
     }
     
     func configure(with launch: Launch) {
-        // Remove existing hosting controller if any
         hostingController?.view.removeFromSuperview()
         hostingController?.removeFromParent()
         

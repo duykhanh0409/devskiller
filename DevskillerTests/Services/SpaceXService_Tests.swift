@@ -122,7 +122,6 @@ final class SpaceXService_Tests: XCTestCase {
             )
             .store(in: &cancellables)
         
-        // Then
         wait(for: [expectation], timeout: 2.0)
         XCTAssertNil(receivedResponse)
         XCTAssertNotNil(receivedError)

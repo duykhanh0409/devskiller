@@ -71,7 +71,6 @@ class MockSpaceXService {
             .eraseToAnyPublisher()
     }
     
-    // Helper method to create mock launches
     private static func createMockLaunch(name: String, dateUtc: String, success: Bool? = true) -> Launch {
         return Launch(
             id: UUID().uuidString,

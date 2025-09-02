@@ -36,8 +36,6 @@ class NetworkingManager {
             return Fail(error: NetworkingError.invalidURL).eraseToAnyPublisher()
         }
         
-        print("🌐 Fetching data from: \(urlString)")
-        
         let session = CertificatePinningManager.createURLSession()
         return session.dataTaskPublisher(for: url)
             .tryMap { element -> Data in
@@ -45,7 +43,7 @@ class NetworkingManager {
                     throw NetworkingError.badResponse(statusCode: -1)
                 }
                 
-                print("📡 Response status code: \(response.statusCode)")
+                print("📡 Response status code from \(url) with code: \(response.statusCode)")
                 
                 guard 200..<300 ~= response.statusCode else {
                     throw NetworkingError.badResponse(statusCode: response.statusCode)
@@ -63,7 +61,6 @@ class NetworkingManager {
             return Fail(error: NetworkingError.invalidURL).eraseToAnyPublisher()
         }
         
-        print("🌐 POSTing data to: \(urlString)")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -84,13 +81,12 @@ class NetworkingManager {
                     throw NetworkingError.badResponse(statusCode: -1)
                 }
                 
-                print("📡 Response status code: \(response.statusCode)")
+                print("📡 Response status from \(url) with code: \(response.statusCode)")
                 
                 guard 200..<300 ~= response.statusCode else {
                     throw NetworkingError.badResponse(statusCode: response.statusCode)
                 }
                 
-                print("✅ Data received: \(element.data.count) bytes")
                 return element.data
             }
             .receive(on: DispatchQueue.main)
@@ -103,7 +99,6 @@ class NetworkingManager {
                 do {
                     let decoder = JSONDecoder()
                     let result = try decoder.decode(T.self, from: data)
-                    print("✅ Successfully decoded \(T.self)")
                     return result
                 } catch {
                     throw NetworkingError.decodingError(error.localizedDescription)
@@ -118,7 +113,6 @@ class NetworkingManager {
                 do {
                     let decoder = JSONDecoder()
                     let result = try decoder.decode(T.self, from: data)
-                    print("✅ Successfully decoded \(T.self)")
                     return result
                 } catch {
                     throw NetworkingError.decodingError(error.localizedDescription)
