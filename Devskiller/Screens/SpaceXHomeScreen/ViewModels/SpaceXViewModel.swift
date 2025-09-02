@@ -51,7 +51,12 @@ class SpaceXViewModel {
         launches = []
         
         let companyPublisher = service.fetchCompany()
-        let launchesPublisher = service.fetchLaunchesPaginated(page: currentPage, limit: pageSize, query: buildQuery())
+        let launchesPublisher = service.fetchLaunchesPaginated(
+            page: currentPage, 
+            limit: pageSize, 
+            query: buildQuery(),
+            options: buildOptions()
+        )
         
         // I saw that we have nice to requirement is Caching (cache response data to avoid hitting the network every time) but IMHO in this case It's not really necessary because every time user kill and open the app again they always need to call the api, because this screen come up right way when user open the app. Caching is a very good strategy and I always apply it, but in this case I think it is not too necessary. Let me know if I'm wrong or missing something, very happy to discuss !!.
         Publishers.Zip(companyPublisher, launchesPublisher)
@@ -77,7 +82,12 @@ class SpaceXViewModel {
         isLoadingMore = true
         currentPage += 1
         
-        service.fetchLaunchesPaginated(page: currentPage, limit: pageSize, query: buildQuery())
+        service.fetchLaunchesPaginated(
+            page: currentPage, 
+            limit: pageSize, 
+            query: buildQuery(),
+            options: buildOptions()
+        )
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 self?.isLoadingMore = false
@@ -108,6 +118,15 @@ class SpaceXViewModel {
         }
         
         return LaunchQueryFilter(dateUtc: dateUtc, success: success)
+    }
+    
+    private func buildOptions() -> LaunchQueryOptions {
+        let sortValue = sortOrder == .ascending ? "asc" : "desc"
+        return LaunchQueryOptions(
+            limit: pageSize,
+            page: currentPage,
+            sort: ["date_utc": sortValue]
+        )
     }
     
     func applyFilters() {

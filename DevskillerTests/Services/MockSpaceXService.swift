@@ -42,7 +42,7 @@ class MockSpaceXService {
             .eraseToAnyPublisher()
     }
     
-    static func fetchLaunchesSuccess(page: Int, limit: Int, query: LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error> {
+    static func fetchLaunchesSuccess(page: Int, limit: Int, query: LaunchQueryFilter, options: LaunchQueryOptions?) -> AnyPublisher<LaunchQueryResponse, Error> {
         let mockLaunches = [
             createMockLaunch(name: "Test Launch 1", dateUtc: "2023-01-01T00:00:00.000Z", success: true),
             createMockLaunch(name: "Test Launch 2", dateUtc: "2023-06-01T00:00:00.000Z", success: false)
@@ -66,7 +66,7 @@ class MockSpaceXService {
             .eraseToAnyPublisher()
     }
     
-    static func fetchLaunchesFailure(page: Int, limit: Int, query: LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error> {
+    static func fetchLaunchesFailure(page: Int, limit: Int, query: LaunchQueryFilter, options: LaunchQueryOptions?) -> AnyPublisher<LaunchQueryResponse, Error> {
         return Fail(error: URLError(.badServerResponse))
             .eraseToAnyPublisher()
     }

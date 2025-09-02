@@ -11,20 +11,20 @@ import Combine
 
 protocol SpaceXServiceProtocol {
     func fetchCompany() -> AnyPublisher<Company, Error>
-    func fetchLaunchesPaginated(page: Int, limit: Int, query: LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error>
+    func fetchLaunchesPaginated(page: Int, limit: Int, query: LaunchQueryFilter, options: LaunchQueryOptions?) -> AnyPublisher<LaunchQueryResponse, Error>
 }
 
 class SpaceXService: SpaceXServiceProtocol {
     static let shared = SpaceXService()
     
     private let fetchCompanyPublisher: () -> AnyPublisher<Company, Error>
-    private let fetchLaunchesPublisher: (Int, Int, LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error>
+    private let fetchLaunchesPublisher: (Int, Int, LaunchQueryFilter, LaunchQueryOptions?) -> AnyPublisher<LaunchQueryResponse, Error>
     
     init(
         fetchCompanyPublisher: @escaping () -> AnyPublisher<Company, Error> = { NetworkingManager.fetch(Company.self, from: Constants.companyEndpoint) },
-        fetchLaunchesPublisher: @escaping (Int, Int, LaunchQueryFilter) -> AnyPublisher<LaunchQueryResponse, Error> = { page, limit, query in
-            let options = LaunchQueryOptions(limit: limit, page: page)
-            let queryBody = LaunchQuery(query: query, options: options)
+        fetchLaunchesPublisher: @escaping (Int, Int, LaunchQueryFilter, LaunchQueryOptions?) -> AnyPublisher<LaunchQueryResponse, Error> = { page, limit, query, options in
+            let finalOptions = options ?? LaunchQueryOptions(limit: limit, page: page)
+            let queryBody = LaunchQuery(query: query, options: finalOptions)
             return NetworkingManager.post(LaunchQueryResponse.self, body: queryBody, to: Constants.launchesQueryEndpoint)
         }
     ) {
@@ -36,7 +36,7 @@ class SpaceXService: SpaceXServiceProtocol {
         return fetchCompanyPublisher()
     }
     
-    func fetchLaunchesPaginated(page: Int, limit: Int, query: LaunchQueryFilter = LaunchQueryFilter()) -> AnyPublisher<LaunchQueryResponse, Error> {
-        return fetchLaunchesPublisher(page, limit, query)
+    func fetchLaunchesPaginated(page: Int, limit: Int, query: LaunchQueryFilter = LaunchQueryFilter(), options: LaunchQueryOptions? = nil) -> AnyPublisher<LaunchQueryResponse, Error> {
+        return fetchLaunchesPublisher(page, limit, query, options)
     }
 }
